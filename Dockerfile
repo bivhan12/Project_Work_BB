@@ -1,9 +1,18 @@
-FROM node:14-alpine3.16
+FROM alpine:latest
+MAINTAINER bivhan
 
-WORKDIR /app
+RUN apk update && \
+    apk add --no-cache apache2-utils apache2 unzip
 
-COPY . .
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page296/carvilla-free-website-template.zip /tmp/
 
-RUN npm install
+WORKDIR /var/www/html/
 
-CMD [ "npm", "start" ]
+RUN unzip /tmp/carvilla-free-website-template.zip -d /tmp/ && \
+    cp -rvf /tmp/photogenic/* . && \
+    rm -rf /tmp/photogenic /tmp/carvilla-free-website-template.zip
+
+EXPOSE 80
+
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
