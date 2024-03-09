@@ -1,8 +1,8 @@
-FROM alpine:latest
+FROM node:latest
 MAINTAINER bivhan
 
-RUN apk update && \
-    apk add --no-cache apache2-utils apache2 unzip
+RUN apt update && \
+    apt add --no-cache apache2-utils apache2 unzip
 
 ADD https://www.free-css.com/assets/files/free-css-templates/download/page296/carvilla-free-website-template.zip /tmp/
 
