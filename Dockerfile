@@ -12,7 +12,7 @@ RUN unzip /tmp/carvilla-free-website-template.zip -d /tmp/ && \
     cp -rvf /tmp/photogenic/* . && \
     rm -rf /tmp/photogenic /tmp/carvilla-free-website-template.zip
 
-EXPOSE 80
+EXPOSE 80 22
 
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
