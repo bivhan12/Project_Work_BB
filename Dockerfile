@@ -1,9 +1,9 @@
-FROM ubuntu:20.04
-LABEL Author="Bivhan"
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt update && apt install zip unzip apache2 -y
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
-EXPOSE 80
-WORKDIR /var/www/html
-VOLUME /var/log/apache2
-ADD crispykitchen.tar.gz /var/www/html/
+FROM node:14-alpine3.16
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
+CMD [ "npm", "start" ]
