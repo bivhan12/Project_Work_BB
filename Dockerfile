@@ -1,7 +1,9 @@
-FROM node:latest
-MAINTAINER bivhan
-RUN npm install -g express
-WORKDIR /usr/src/app
-COPY . .
+FROM ubuntu:20.04
+LABEL Author="Bivhan"
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update && apt install zip unzip apache2 -y
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 EXPOSE 80
-CMD ["node", "app.js"]
+WORKDIR /var/www/html
+VOLUME /var/log/apache2
+ADD crispykitchen.tar.gz /var/www/html/
